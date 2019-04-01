@@ -1,0 +1,22 @@
+{
+  "name": "ts-init",
+  "version": "1.0.0",
+  "description": "Base typescript files, packages, and settings",
+  "keywords": [],
+  "author": {
+    "email": "crichmond1989@gmail.com",
+    "name": "Chris Richmond"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/crichmond1989/ts-init.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^1.16.4",
+    "prettier-tslint": "^0.4.2",
+    "tslint": "^5.14.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "typescript": "^3.4.1"
+  }
+}
