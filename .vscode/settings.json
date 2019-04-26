@@ -3,6 +3,7 @@
     "source.fixAll.tslint": true
   },
   "editor.formatOnSave": true,
+  "editor.tabSize": 2,
   "files.exclude": {
     "**/.git": true,
     "dist": true,

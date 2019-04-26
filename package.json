@@ -1,18 +1,34 @@
 {
-  "name": "ts-init",
+  "name": "@crichmond1989/create-ts",
   "version": "1.0.0",
   "description": "Base typescript files, packages, and settings",
-  "keywords": [],
+  "keywords": [
+    "create",
+    "ts",
+    "typescript"
+  ],
   "author": {
     "email": "crichmond1989@gmail.com",
     "name": "Chris Richmond"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/crichmond1989/ts-init.git"
+    "url": "git://github.com/crichmond1989/create-ts.git"
+  },
+  "scripts": {
+    "build": "npm run build:copy && tsc",
+    "build:copy": "copyfiles .gitignore .prettierrc .vscode/* LICENSE tsconfig.json tslint.json dist"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "bin": {
+    "create-ts": "dist/index.js"
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^11.13.7",
+    "copyfiles": "^2.1.0",
     "prettier": "^1.16.4",
     "prettier-tslint": "^0.4.2",
     "tslint": "^5.14.0",

@@ -1,0 +1,9 @@
+[
+  ".gitignore",
+  ".prettierrc",
+  ".vscode/extensions.json",
+  ".vscode/settings.json",
+  "LICENSE",
+  "tsconfig.json",
+  "tslint.json"
+]

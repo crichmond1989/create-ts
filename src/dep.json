@@ -1,0 +1,7 @@
+[
+  "prettier",
+  "prettier-tslint",
+  "tslint",
+  "tslint-config-airbnb",
+  "typescript"
+]

@@ -6,6 +6,7 @@
   },
   "jsRules": true,
   "rules": {
+    "import-name": false,
     "max-line-length": [true, 180],
     "object-shorthand-properties-first": false,
     "quotemark": [true, "double", "backtick"],

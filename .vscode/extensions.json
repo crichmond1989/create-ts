@@ -1,3 +1,9 @@
 {
-  "recommendations": ["2gua.rainbow-brackets", "esbenp.prettier-vscode", "mike-co.import-sorter", "ms-vscode.vscode-typescript-tslint-plugin", "oderwat.indent-rainbow"]
+  "recommendations": [
+    "2gua.rainbow-brackets",
+    "esbenp.prettier-vscode",
+    "mike-co.import-sorter",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "oderwat.indent-rainbow"
+  ]
 }
