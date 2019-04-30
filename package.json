@@ -17,7 +17,9 @@
   },
   "scripts": {
     "build": "npm run build:copy && tsc",
-    "build:copy": "copyfiles .gitignore .prettierrc .vscode/* LICENSE tsconfig.json tslint.json dist"
+    "build:copy": "copyfiles .gitignore .prettierrc .vscode/* LICENSE tsconfig.json tslint.json dist",
+    "lint": "tslint -p .",
+    "test": "jest ./src"
   },
   "files": [
     "dist/*"
@@ -27,12 +29,24 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/jest": "^24.0.12",
     "@types/node": "^11.13.7",
+    "@types/prompts": "^1.2.0",
+    "babel-jest": "^24.7.1",
     "copyfiles": "^2.1.0",
+    "jest": "^24.7.1",
     "prettier": "^1.16.4",
     "prettier-tslint": "^0.4.2",
     "tslint": "^5.14.0",
     "tslint-config-airbnb": "^5.11.1",
     "typescript": "^3.4.1"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "p-iteration": "^1.1.8",
+    "prompts": "^2.0.4"
   }
 }
