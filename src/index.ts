@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 
-import gitInit from "./stages/gitInit.js";
-import copySettings from "./stages/copySettings.js";
+import yargs from "yargs";
+
+import copy from "./copy.json";
 import conflicts from "./stages/conflicts.js";
+import copySettings from "./stages/copySettings.js";
+import gitInit from "./stages/gitInit.js";
 import npmInit from "./stages/npmInit.js";
 import npmInstall from "./stages/npmInstall.js";
-import copy from "./copy.json";
 
 /*
   npm init
@@ -15,39 +17,47 @@ import copy from "./copy.json";
   npm i -D ...
 */
 
-const run = async () => {
-  const workspace = process.argv[2] || process.cwd();
-  const mergeAll = process.argv.some(x => x === "-m");
-  const overwriteAll = process.argv.some(x => x === "-o");
-  const skipAll = process.argv.some(x => x === "-s");
+const run = async (args: { starter: string; destination: string; overwrite: boolean }) => {
+  const { starter, destination: workspace, overwrite: overwriteAll } = args;
 
-  const options = {
-    merge: [] as string[],
-    overwrite: [] as string[],
-    workspace,
-  };
+  let overwrite: string[] = [];
 
-  await npmInit(options);
+  await npmInit(workspace, starter);
 
-  if (mergeAll) {
-    options.merge = copy;
-  } else if (overwriteAll) {
-    options.overwrite = copy;
-  } else if (!skipAll) {
-    const { merge, overwrite } = await conflicts(options);
+  if (overwriteAll) {
+    overwrite = copy;
+  } else {
+    const conflict = await conflicts(workspace);
 
-    if (merge) {
-      options.merge = merge;
-    }
-
-    if (overwrite) {
-      options.overwrite = overwrite;
+    if (conflict.overwrite) {
+      overwrite = conflict.overwrite;
     }
   }
 
-  await copySettings(options);
-  await gitInit(options);
-  await npmInstall(options);
+  await copySettings(workspace, overwrite);
+  await gitInit(workspace);
+  await npmInstall(workspace);
 };
 
-run().catch(err => console.error(err));
+yargs
+  .command(
+    "$0 [destination] [starter]",
+    "",
+    args =>
+      args
+        .positional("destination", {
+          default: ".",
+        })
+        .positional("starter", {
+          describe: "node, react, stencil",
+          default: "node",
+        })
+        .option("overwrite", {
+          boolean: true,
+        })
+        .alias("o", "overwrite"),
+    args => run(args as any).catch(e => console.error(e)),
+  )
+  .alias("h", "help")
+  .alias("v", "version")
+  .help().argv;

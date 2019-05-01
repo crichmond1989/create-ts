@@ -15,7 +15,7 @@ describe("file exists", () => {
   test("logs successful skip message", async () => {
     existsAsyncMock.mockResolvedValueOnce(true);
 
-    await gitInit({ workspace: "." });
+    await gitInit(".");
 
     expect(logMock.mock.calls.length).toBe(1);
   });
@@ -25,7 +25,7 @@ describe("file does not exist", () => {
   test("executes git init", async () => {
     existsAsyncMock.mockResolvedValueOnce(false);
 
-    await gitInit({ workspace: "." });
+    await gitInit(".");
 
     expect(externalMock.mock.calls.length).toBe(1);
   });

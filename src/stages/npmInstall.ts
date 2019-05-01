@@ -1,9 +1,8 @@
 import external from "../commands/external";
 import dep from "../dep.json";
-import { IOptions } from "../IOptions";
 import npmTarget from "../utils/npmTarget";
 
-export default async ({ workspace }: IOptions) =>
+export default async (workspace: string) =>
   external({
     target: npmTarget(),
     args: ["install", "--save-dev", ...dep],

@@ -17,7 +17,9 @@
   },
   "scripts": {
     "build": "npm run build:copy && tsc",
-    "build:copy": "copyfiles .gitignore .prettierrc .vscode/* LICENSE tsconfig.json tslint.json dist",
+    "build:copy": "npm run build:copy:root && npm run build:copy:starters",
+    "build:copy:root": "copyfiles .gitignore .prettierrc .vscode/* LICENSE tsconfig.json tslint.json dist",
+    "build:copy:starters": "copyfiles -u 1 starters/**/* dist",
     "lint": "tslint -p .",
     "test": "jest ./src"
   },
@@ -38,15 +40,16 @@
     "babel-jest": "^24.7.1",
     "copyfiles": "^2.1.0",
     "jest": "^24.7.1",
-    "prettier": "^1.16.4",
+    "prettier": "^1.17.0",
     "prettier-tslint": "^0.4.2",
-    "tslint": "^5.14.0",
+    "tslint": "^5.16.0",
     "tslint-config-airbnb": "^5.11.1",
-    "typescript": "^3.4.1"
+    "typescript": "^3.4.5"
   },
   "dependencies": {
     "chalk": "^2.4.2",
     "p-iteration": "^1.1.8",
-    "prompts": "^2.0.4"
+    "prompts": "^2.0.4",
+    "yargs": "^13.2.2"
   }
 }
